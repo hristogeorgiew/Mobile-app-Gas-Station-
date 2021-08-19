@@ -1,13 +1,17 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
 
 // create a component
 const FormContainer = ({children}) => {
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView 
+            enabled 
+            behavior={Platform.OS === 'ios' ? "padding" : null} 
+            style={styles.container}
+        >
            {children}
-        </View>
+        </KeyboardAvoidingView>
     );
 };
 

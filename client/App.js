@@ -8,7 +8,7 @@ import SignUpForm from './app/components/SignUpForm/SignUpForm';
 
 export default function App() {
   return (
-    <View style={{flex: 1, paddingTop: 60}}>
+    <View style={{flex: 1, paddingTop: 120}}>
         <View style={{height: 80}}>
             <FormHeading 
               leftHeading="Welcome " 
@@ -35,7 +35,10 @@ export default function App() {
         >
           
           <LoginForm />
+          <ScrollView>
           <SignUpForm />
+          </ScrollView>
+          
         </ScrollView>
     </View>
   );
