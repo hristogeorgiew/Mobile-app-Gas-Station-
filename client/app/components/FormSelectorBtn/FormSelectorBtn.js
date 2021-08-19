@@ -1,14 +1,14 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 
 // create a component
 const FormSelectorBtn = ({title, backgroundColor, style}) => {
     return (
         <TouchableWithoutFeedback>
-            <View style={[styles.container, style, {backgroundColor}]}>
+            <Animated.View style={[styles.container, style, {backgroundColor}]}>
               <Text style={styles.title}>{title}</Text>
-            </View>
+            </Animated.View>
           </TouchableWithoutFeedback>
     );
 };

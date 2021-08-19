@@ -1,12 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions} from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, Text, View, ScrollView, Animated, Dimensions} from 'react-native';
 import FormHeading from './app/components/FormHeader/FormHeader';
 import FormSelectorBtn from './app/components/FormSelectorBtn/FormSelectorBtn';
 import LoginForm from './app/components/LoginForm/LoginForm';
 import SignUpForm from './app/components/SignUpForm/SignUpForm';
 
+const {width} = Dimensions.get('window');
+
 export default function App() {
+  const animation = useRef(new Animated.Value(0)).current;
+
+  const rightHeaderOpacity = animation.interpolate({
+    inputRange: [0, width],
+    outputRange: [1, 0]
+  })
+
+  const leftHeaderTranslateX = animation.interpolate({
+    inputRange: [0, width],
+    outputRange: [0, 40]
+  })
+
+  const rightHeaderTranslateY = animation.interpolate({
+    inputRange: [0, width],
+    outputRange: [0, -20]
+  })
+
+  const loginColorInterpolate = animation.interpolate({
+    inputRange: [0, width],
+    outputRange: ['rgba(27,27,51,1 )', 'rgba(27,27,51,0.4)']
+  })
+  const signUpColorInterpolate = animation.interpolate({
+    inputRange: [0, width],
+    outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)']
+  })
   return (
     <View style={{flex: 1, paddingTop: 120}}>
         <View style={{height: 80}}>
@@ -14,17 +41,20 @@ export default function App() {
               leftHeading="Welcome " 
               rightHeading="Back"
               subHeading="Nsys App"
+              rightHeaderOpacity={rightHeaderOpacity}
+              leftHeaderTranslateX={leftHeaderTranslateX}
+              rightHeaderTranslateY={rightHeaderTranslateY}
             />
         </View>
         <View style={{flexDirection: 'row', paddingHorizontal: 20, marginBottom: 20}}>
           <FormSelectorBtn 
             style={styles.borderLeft} 
-            backgroundColor='rgba(27,27,51, 1 )' 
+            backgroundColor={loginColorInterpolate} 
             title="Влез" 
           />
           <FormSelectorBtn 
             style={styles.borderRight}  
-            backgroundColor='rgba(27,27,51,0.4 )' 
+            backgroundColor={signUpColorInterpolate}
             title="Регистрация" 
           />
         </View>
@@ -32,6 +62,8 @@ export default function App() {
           horizontal 
           pagingEnabled
           showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([{nativeEvent: {contentOffset: {x: animation}}}], {useNativeDriver: false})}
         >
           
           <LoginForm />

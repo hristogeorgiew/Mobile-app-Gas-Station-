@@ -1,18 +1,25 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 
 // create a component
-const FormHeader = ({leftHeading, rightHeading, subHeading}) => {
+const FormHeader = ({
+    leftHeading, 
+    rightHeading, 
+    subHeading, 
+    leftHeaderTranslateX = 40, 
+    rightHeaderTranslateY = -20, 
+    rightHeaderOpacity = 0
+}) => {
     return (
         <>
             <View style={styles.container}>
-                <Text style={styles.heading}>
+                <Animated.Text style={[styles.heading, {transform: [{translateX: leftHeaderTranslateX}]}]}>
                     {leftHeading}
-                </Text>
-                <Text style={styles.heading}>
+                </Animated.Text>
+                <Animated.Text style={[styles.heading, {opacity: rightHeaderOpacity, transform: [{translateY: rightHeaderTranslateY}]}]}>
                     {rightHeading}
-                </Text>
+                </Animated.Text>
             </View>
             <Text style={styles.subHeading}>
                 {subHeading}
