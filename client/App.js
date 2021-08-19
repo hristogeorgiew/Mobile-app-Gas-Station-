@@ -10,6 +10,7 @@ const {width} = Dimensions.get('window');
 
 export default function App() {
   const animation = useRef(new Animated.Value(0)).current;
+  const scrollView = useRef()
 
   const rightHeaderOpacity = animation.interpolate({
     inputRange: [0, width],
@@ -34,6 +35,7 @@ export default function App() {
     inputRange: [0, width],
     outputRange: ['rgba(27,27,51,0.4)', 'rgba(27,27,51,1)']
   })
+
   return (
     <View style={{flex: 1, paddingTop: 120}}>
         <View style={{height: 80}}>
@@ -50,15 +52,18 @@ export default function App() {
           <FormSelectorBtn 
             style={styles.borderLeft} 
             backgroundColor={loginColorInterpolate} 
-            title="Влез" 
+            title="Влез"
+            onPress={() => scrollView.current.scrollTo({x: 0})} 
           />
           <FormSelectorBtn 
             style={styles.borderRight}  
             backgroundColor={signUpColorInterpolate}
-            title="Регистрация" 
+            title="Регистрация"
+            onPress={() => scrollView.current.scrollTo({x: width})}  
           />
         </View>
-        <ScrollView 
+        <ScrollView
+          ref={scrollView} 
           horizontal 
           pagingEnabled
           showsHorizontalScrollIndicator={false}
