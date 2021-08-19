@@ -1,13 +1,17 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TextInput } from 'react-native';
 import FormContainer from '../FormContainer/FormContainer';
+import FormInput from '../FormInput/FormInput';
+import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 
 // create a component
 const LoginForm = () => {
     return (
         <FormContainer>
-            <Text style={{fontSize: 50,  fontWeight: 'bold'}}>Влез</Text>
+            <FormInput title="Email" placeholder="example@email.com" />
+            <FormInput title="Password" placeholder="********" />
+            <FormSubmitButton title="Влез"/>
         </FormContainer>
     );
 };

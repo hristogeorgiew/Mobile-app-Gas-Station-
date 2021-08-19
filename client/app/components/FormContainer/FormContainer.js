@@ -14,9 +14,8 @@ const FormContainer = ({children}) => {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "center", 
-        alignItems: 'center', 
-        width: Dimensions.get('window').width, 
+        width: Dimensions.get('window').width,
+        paddingHorizontal: 20 
     },
 });
 

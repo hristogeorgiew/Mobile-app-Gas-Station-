@@ -16,7 +16,7 @@ export default function App() {
               subHeading="Nsys App"
             />
         </View>
-        <View style={{flexDirection: 'row', paddingHorizontal: 20}}>
+        <View style={{flexDirection: 'row', paddingHorizontal: 20, marginBottom: 20}}>
           <FormSelectorBtn 
             style={styles.borderLeft} 
             backgroundColor='rgba(27,27,51, 1 )' 
